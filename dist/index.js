@@ -24,4 +24,56 @@ function insertUser(username, password, firstName, lastName) {
         console.log(res);
     });
 }
-insertUser("random@gmail.com", "adad", "randim2", "mingwal");
+function updateUser(username_1, _a) {
+    return __awaiter(this, arguments, void 0, function* (username, { firstName, lastName }) {
+        try {
+            const res = yield prisma.user.update({
+                where: {
+                    email: username
+                },
+                data: {
+                    firstName,
+                    lastName
+                }
+            });
+            console.log(res);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    });
+}
+function deleteUser(username) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const res = yield prisma.user.delete({
+                where: {
+                    email: username
+                }
+            });
+            console.log(res);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    });
+}
+function getUser(username) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const res = yield prisma.user.findFirst({
+                where: {
+                    email: username
+                }
+            });
+            console.log(res);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    });
+}
+getUser("shubhammingi@gmail.com");
+// deleteUser("random@gmail.com");
+// updateUser("shubhammingi@gmail.com", {firstName: "random1" , lastName: "randomlastname"});
+// insertUser("randoawdm@gmail.com", "adadqw", "ranqwddim2", "mingwqwdal");
